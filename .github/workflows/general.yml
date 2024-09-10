@@ -25,7 +25,7 @@ jobs:
         access_token: ${{ github.token }}
 
     - name: Check out code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Verify
       uses: golangci/golangci-lint-action@v2
@@ -41,12 +41,12 @@ jobs:
     name: Unit and Integration tests
     steps:
     - name: Checkout Metal LB Operator
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         path: metallboperator
         fetch-depth: 0 # Fetch all history for all tags and branches
 
-    - uses: actions/setup-go@v2
+    - uses: actions/setup-go@v5
       id: go
       with:
         go-version: ${{ matrix.go }}

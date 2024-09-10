@@ -29,13 +29,13 @@ jobs:
       with:
         access_token: ${{ github.token }}
     - name: Checkout Previous Release Metal LB Operator
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         path: metallboperator
         ref: v0.12 # previous release version
         fetch-depth: 0 # Fetch all history for all tags and branches
 
-    - uses: actions/setup-go@v2
+    - uses: actions/setup-go@v5
       id: go
       with:
         go-version: ${{ matrix.go }}
@@ -58,7 +58,7 @@ jobs:
         make test-e2e
     - name: Archive E2E Tests logs
       if: ${{ failure() }}
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: test_e2e_logs
         path: /tmp/test_e2e_logs/
@@ -68,13 +68,13 @@ jobs:
         kind export logs /tmp/kind_logs
     - name: Archive kind logs
       if: ${{ failure() }}
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: kind_logs
         path: /tmp/kind_logs
 
     - name: Checkout Latest Metal LB Operator
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         path: metallboperator-latest
         fetch-depth: 0 # Fetch all history for all tags and branches
@@ -95,7 +95,7 @@ jobs:
         make test-e2e
     - name: Archive E2E Tests logs
       if: ${{ failure() }}
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: test_e2e_logs
         path: /tmp/test_e2e_logs/
@@ -105,7 +105,7 @@ jobs:
         kind export logs /tmp/kind_logs
     - name: Archive kind logs
       if: ${{ failure() }}
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: kind_logs
         path: /tmp/kind_logs

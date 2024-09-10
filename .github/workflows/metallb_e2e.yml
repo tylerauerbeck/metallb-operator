@@ -26,11 +26,11 @@ jobs:
         with:
           access_token: ${{ github.token }}
       - name: Checkout Metal LB Operator
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           path: metallboperator
           fetch-depth: 0 # Fetch all history for all tags and branches
-      - uses: actions/setup-go@v2
+      - uses: actions/setup-go@v5
         id: go
         with:
           go-version: ${{ matrix.go }}
@@ -45,13 +45,13 @@ jobs:
           make manifests
           git diff --exit-code
       - name: Checkout MetalLB
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: metallb/metallb
           path: metallb
           ref: 163c53420284eff3df88543406cc19fcea33497d
       - name: Checkout MetalLB v0.12.1
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: metallb/metallb
           path: metallb-0.12.1
@@ -105,7 +105,7 @@ jobs:
           sudo chmod -R o+r /tmp/kind_logs
       - name: Archive kind logs
         if: ${{ failure() }}
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: kind_logs
           path: /tmp/kind_logs

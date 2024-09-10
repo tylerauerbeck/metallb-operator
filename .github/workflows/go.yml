@@ -28,12 +28,12 @@ jobs:
       with:
         access_token: ${{ github.token }}
     - name: Checkout Metal LB Operator
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         path: metallboperator
         fetch-depth: 0 # Fetch all history for all tags and branches
 
-    - uses: actions/setup-go@v2
+    - uses: actions/setup-go@v5
       id: go
       with:
         go-version: ${{ matrix.go }}
@@ -72,7 +72,7 @@ jobs:
 
     - name: Archive E2E Tests logs
       if: ${{ failure() }}
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: test_e2e_logs
         path: /tmp/test_e2e_logs/
@@ -84,7 +84,7 @@ jobs:
 
     - name: Archive kind logs
       if: ${{ failure() }}
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: kind_logs
         path: /tmp/kind_logs
